@@ -16,8 +16,10 @@ let cache = [];
 function createDivs() {
     // create divs for top numbers container
     for (let i = 0; i < 12; i++) {
+        let className = `number_${i}`;
         let button = document.createElement("button");
         button.textContent = numbers_arr[i];
+        button.classList.add(className);
         numbers_top.appendChild(button);
     }
 
@@ -120,9 +122,13 @@ buttons.forEach((button) => {
             console.log(cache)
 
         } else if (button.textContent == "+/-") {
-            display.textContent = `-${display.textContent}`;
+            if (display.textContent.length < 8) {
+                display.textContent = `-${display.textContent}`;
+            }
         } else if (button.textContent == "\%") {
-            display.textContent /= 100;
+            if (display.textContent.length < 8) {
+                display.textContent /= 100;
+            }
         } else {
             if (display.textContent.length < 7) {
                 humanInput = button.textContent;

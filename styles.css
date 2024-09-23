@@ -19,6 +19,7 @@ body {
     width: 350px;
     max-width: 100vw;
     min-width: 350px;
+    background-color: aqua;
 }
 
 .display {
@@ -67,8 +68,14 @@ body {
     align-items: center;
     font-size: x-large;
     font-style: oblique;
+    background-color: rgb(141, 141, 141);
 }
 
+.numbers_top .number_0, 
+.numbers_top .number_1, 
+.numbers_top .number_2{
+    background-color: orangered;
+}
 
 
 .numbers_bot {
@@ -80,6 +87,7 @@ body {
     border-radius: 5px;
     font-size: x-large;
     font-style: oblique;
+    background-color: rgb(141, 141, 141);
 }
 
 .num_0 {
