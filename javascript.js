@@ -60,10 +60,23 @@ function clearDisplay() {
     updateDisplay();
 };
 
+function operate() {
+    if (cache[1] == "+") {
+        res = cache[0] + cache[2];
+    } else if (cache[1] == "-") {
+        res = cache[0] - cache[2];
+    } else if (cache[1] == "*") {
+        res = cache[0] * cache[2];
+    } else {
+        res = cache[0] / cache[2];
+    }
+    display.textContent = res;
+    cache = [res];
+    isResultDisplayed = true;
+};
 
 
 const buttons = document.querySelectorAll("button");
-
 buttons.forEach((button) => {
     button.addEventListener("click", () => {
         if (button.textContent == "AC") {
@@ -89,6 +102,8 @@ buttons.forEach((button) => {
 
             console.log(cache)
 
+        } else if (button.textContent == "+/-") {
+            display.textContent = `-${display.textContent}`;
         } else {
             if (display.textContent.length < 8) {
                 humanInput = button.textContent;
@@ -98,24 +113,11 @@ buttons.forEach((button) => {
         }
         
         
-    })
-})
+        
+    });
+});
 
 
 
 
-function operate() {
-    if (cache[1] == "+") {
-        res = cache[0] + cache[2];
-    } else if (cache[1] == "-") {
-        res = cache[0] - cache[2];
-    } else if (cache[1] == "*") {
-        res = cache[0] * cache[2];
-    } else {
-        res = cache[0] / cache[2];
-    }
-    display.textContent = res;
-    cache = [res];
-    isResultDisplayed = true;
-};
 
