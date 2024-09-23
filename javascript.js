@@ -67,18 +67,22 @@ function clearDisplay() {
 };
 
 function operate() {
-    if (cache[1] == "+") {
-        res = cache[0] + cache[2];
-    } else if (cache[1] == "-") {
-        res = cache[0] - cache[2];
-    } else if (cache[1] == "*") {
-        res = cache[0] * cache[2];
-    } else {
-        res = cache[0] / cache[2];
-    }
-    display.textContent = res;
-    cache = [res];
-    isResultDisplayed = true;
+    if (cache.length == 3) {
+        if (cache[1] == "+") {
+            res = cache[0] + cache[2];
+        } else if (cache[1] == "-") {
+            res = cache[0] - cache[2];
+        } else if (cache[1] == "*") {
+            res = cache[0] * cache[2];
+        } else {
+            res = cache[0] / cache[2];
+        }
+        display.textContent = res;
+        cache = [res];
+        isResultDisplayed = true;
+    } 
+    
+    
 };
 
 
@@ -89,13 +93,18 @@ buttons.forEach((button) => {
             clearDisplay();
             cache = [];
         } else if (button.textContent == "="){
-            cache.push(parseFloat(display.textContent));
-            operate();
-            console.log(cache);
+            if (cache.length > 1) {
+                cache.push(parseFloat(display.textContent));
+                operate();
+            }
+            
         } else if (operator_arr.includes(button.textContent)) {    // add current display into cache when user clicks an operator         
                        
             let operator = button.textContent
-            cache.push(parseFloat(display.textContent));
+            if (!isResultDisplayed) {
+                cache.push(parseFloat(display.textContent));
+            }
+            
             
             
             if (cache.length == 3) {
@@ -117,8 +126,6 @@ buttons.forEach((button) => {
                 console.log(humanInput);
             }
         }
-        
-        
         
     });
 });
