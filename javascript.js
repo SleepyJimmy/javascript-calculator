@@ -105,8 +105,6 @@ buttons.forEach((button) => {
                 cache.push(parseFloat(display.textContent));
             }
             
-            
-            
             if (cache.length == 3) {
                 operate();
                 cache.push(operator);
@@ -119,6 +117,8 @@ buttons.forEach((button) => {
 
         } else if (button.textContent == "+/-") {
             display.textContent = `-${display.textContent}`;
+        } else if (button.textContent == "\%") {
+            display.textContent /= 100;
         } else {
             if (display.textContent.length < 8) {
                 humanInput = button.textContent;
@@ -126,6 +126,8 @@ buttons.forEach((button) => {
                 console.log(humanInput);
             }
         }
+        
+        
         
     });
 });
