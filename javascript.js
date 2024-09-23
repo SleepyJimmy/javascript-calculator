@@ -3,12 +3,14 @@ let humanInput = "";
 const numbers_top = document.querySelector(".numbers_top");
 const numbers_bot = document.querySelector(".numbers_bot");
 const operators = document.querySelector(".operators");
+const display = document.querySelector(".display");
+display.textContent = "0";
 
 const numbers_arr = ["AC", "+/-", "\%", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 const numbers_bot_arr = ["0", "."];
 const operator_arr = ["+", "-", "*", "/", "="];
 
-const cache = [];
+let cache = [];
 
 // create divs for buttons
 function createDivs() {
@@ -38,37 +40,55 @@ function createDivs() {
 createDivs();
 
 
-const display = document.querySelector(".display");
-display.textContent = "0";
+let isResultDisplayed = false;
 function updateDisplay() {
-    if (display.textContent == 0 && (Number.isInteger(parseInt(humanInput)))) {
+    if (isResultDisplayed) {
         display.textContent = humanInput;
+        isResultDisplayed = false;
     } else {
-        display.textContent += humanInput;
+        if (display.textContent == 0 && (Number.isInteger(parseInt(humanInput)))) {
+            display.textContent = humanInput;
+        } else {
+            display.textContent += humanInput;
+        }
     }
-}
+};
+
 function clearDisplay() {
     humanInput = "";
     display.textContent = "0";
     updateDisplay();
-}
+};
+
+
 
 const buttons = document.querySelectorAll("button");
+
 buttons.forEach((button) => {
     button.addEventListener("click", () => {
         if (button.textContent == "AC") {
             clearDisplay();
+            cache = [];
         } else if (button.textContent == "="){
+            cache.push(parseFloat(display.textContent));
             operate();
-        } else if (operator_arr.includes(button.textContent)) {    // add current display into cache when user clicks an operator
+            console.log(cache);
+        } else if (operator_arr.includes(button.textContent)) {    // add current display into cache when user clicks an operator         
+                       
             let operator = button.textContent
+            cache.push(parseFloat(display.textContent));
             
-            cache.push(parseInt(display.textContent))
+            
             if (cache.length == 3) {
                 operate();
+                cache.push(operator);
+            } else {
+                cache.push(operator);
+                display.textContent = "0";                    
             }
-            cache.push(operator)
-            console.log(cache);
+
+            console.log(cache)
+
         } else {
             if (display.textContent.length < 8) {
                 humanInput = button.textContent;
@@ -82,7 +102,20 @@ buttons.forEach((button) => {
 })
 
 
-function operate() {
 
-}
+
+function operate() {
+    if (cache[1] == "+") {
+        res = cache[0] + cache[2];
+    } else if (cache[1] == "-") {
+        res = cache[0] - cache[2];
+    } else if (cache[1] == "*") {
+        res = cache[0] * cache[2];
+    } else {
+        res = cache[0] / cache[2];
+    }
+    display.textContent = res;
+    cache = [res];
+    isResultDisplayed = true;
+};
 
