@@ -6,7 +6,7 @@ const operators = document.querySelector(".operators");
 
 const numbers_arr = ["AC", "+/-", "\%", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 const numbers_bot_arr = ["0", "."];
-const operator_arr = ["+", "-", "*", "/"];
+const operator_arr = ["+", "-", "*", "/", "="];
 
 // create divs for top numbers container
 for (let i = 0; i < 12; i++) {
@@ -17,8 +17,10 @@ for (let i = 0; i < 12; i++) {
 
 // create divs for bottom numbers container
 for (let i = 0; i < 2; i++) {
+    let className = `num_${numbers_bot_arr[i].replace('.', 'dot')}`;
     let button = document.createElement("button");
     button.textContent = numbers_bot_arr[i];
+    button.classList.add(className);
     numbers_bot.appendChild(button);
 }
 
