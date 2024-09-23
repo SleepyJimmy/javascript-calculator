@@ -76,12 +76,12 @@ function operate() {
             res = cache[0] * cache[2];
         } else {
             if (cache[2] == 0) {
-                res = "stop >:(";
+                display.textContent = "stop >:(";
             } else {
                 res = cache[0] / cache[2];
             }
         }
-        display.textContent = res;
+        display.textContent = res.toString().slice(0, 7);
         cache = [res];
         isResultDisplayed = true;
     } 
@@ -124,7 +124,7 @@ buttons.forEach((button) => {
         } else if (button.textContent == "\%") {
             display.textContent /= 100;
         } else {
-            if (display.textContent.length < 8) {
+            if (display.textContent.length < 7) {
                 humanInput = button.textContent;
                 updateDisplay();    
                 console.log(humanInput);
