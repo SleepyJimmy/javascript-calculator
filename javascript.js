@@ -46,11 +46,17 @@ function updateDisplay() {
         display.textContent = humanInput;
         isResultDisplayed = false;
     } else {
-        if (display.textContent == 0 && (Number.isInteger(parseInt(humanInput)))) {
-            display.textContent = humanInput;
+        if (display.textContent === "0") {
+            if (Number.isInteger(parseInt(humanInput))) {
+                display.textContent = humanInput;
+            } else if (humanInput == ".") {
+                display.textContent += humanInput;
+            }
         } else {
             display.textContent += humanInput;
         }
+            
+        
     }
 };
 
