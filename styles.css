@@ -31,8 +31,9 @@ body {
     font-size: 58px;
     justify-content: end;
     background-color: gray;
-    height: 70px;
-    max-height: 70px;
+    height: 80px;
+    max-height: 80px;
+    font-family: orbitron;
 }
 
 
@@ -99,7 +100,7 @@ body {
 }
 
 .operators > button {
-    background-color: blue;
+    background-color: rgb(241, 189, 77);
     border-radius: 5px;
     aspect-ratio: 1/1;
     display: flex;
