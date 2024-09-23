@@ -56,17 +56,17 @@ function updateDisplay() {
             }
         } else {
             display.textContent += humanInput;
-        }
-            
-        
-    }
+        };
+    };
 };
+
 
 function clearDisplay() {
     humanInput = "";
     display.textContent = "0";
     updateDisplay();
 };
+
 
 function operate() {
     if (cache.length == 3) {
@@ -82,13 +82,12 @@ function operate() {
             } else {
                 res = cache[0] / cache[2];
             }
-        }
+        };
+
         display.textContent = res.toString().slice(0, 7);
         cache = [res];
         isResultDisplayed = true;
-    } 
-    
-    
+    };
 };
 
 
@@ -103,14 +102,11 @@ buttons.forEach((button) => {
                 cache.push(parseFloat(display.textContent));
                 operate();
             }
-            
-        } else if (operator_arr.includes(button.textContent)) {    // add current display into cache when user clicks an operator         
-                       
+        } else if (operator_arr.includes(button.textContent)) {    // add current display into cache when user clicks an operator              
             let operator = button.textContent
             if (!isResultDisplayed) {
                 cache.push(parseFloat(display.textContent));
             }
-            
             if (cache.length == 3) {
                 operate();
                 cache.push(operator);
@@ -118,9 +114,6 @@ buttons.forEach((button) => {
                 cache.push(operator);
                 display.textContent = "0";                    
             }
-
-            console.log(cache)
-
         } else if (button.textContent == "+/-") {
             if (display.textContent.length < 8) {
                 display.textContent = `-${display.textContent}`;
@@ -134,11 +127,8 @@ buttons.forEach((button) => {
                 humanInput = button.textContent;
                 updateDisplay();    
                 console.log(humanInput);
-            }
-        }
-        
-        
-        
+            };
+        };     
     });
 });
 
