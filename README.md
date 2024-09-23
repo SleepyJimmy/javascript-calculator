@@ -1,2 +1,5 @@
 # javascript-calculator
-Using Javascript to develop a calculator. This was a simple project to practice my fundamentals of Javascript. 
+Of course, the infamous <strong>CALCULATOR</strong> project has been undertaken and developed. This was of course just to practice my front-end fundamentals. 
+
+
+Check it out <a href="https://sleepyjimmy.github.io/javascript-calculator/">HERE</a>.
