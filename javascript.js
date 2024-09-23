@@ -75,7 +75,11 @@ function operate() {
         } else if (cache[1] == "*") {
             res = cache[0] * cache[2];
         } else {
-            res = cache[0] / cache[2];
+            if (cache[2] == 0) {
+                res = "stop >:(";
+            } else {
+                res = cache[0] / cache[2];
+            }
         }
         display.textContent = res;
         cache = [res];
